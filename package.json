@@ -1,0 +1,17 @@
+{
+  "name": "CTPL",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^3.6.0",
+    "minimist": "^1.1.1",
+    "node-notifier": "^4.1.2",
+    "twit": "^1.1.20"
+  }
+}
