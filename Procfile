@@ -1,1 +1,1 @@
-<process type>: worker
+worker: node piggyback.js
