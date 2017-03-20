@@ -10,6 +10,8 @@ var refused_tweets = 0
 
 followList = [1076406170, 129845242, 127245578, 3121649873, 22256645, 519196613, 2895951606, 355784391, 2964412118, 3042967388, 278682576]; // @EnterQuotes, @Inspire_Us, @wordstionary, @mindsconsole1, @GreatestQuotes, @MotivatedLiving, @HealingMB, @911well, @fearlessmotivat, @iamfearlesssoul, @thesecret
 
+console.log("Worker is running...");
+
 var statusStream = T.stream('statuses/filter', {
   follow: followList
 });
