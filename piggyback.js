@@ -1,6 +1,5 @@
 var T = require('./index'),
   utils = require('./utils'),
-  notifier = require('node-notifier'),
   fs = require('fs'),
   async = require('async'),
   cron = require('cron'),
