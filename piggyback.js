@@ -13,7 +13,7 @@ var refused_tweets = 0
 
 //followList = ["842392197827842048"];
 followList = ["1076406170", "129845242", "127245578", "3121649873", "22256645", "519196613", "2895951606", "355784391", "2964412118", "3042967388", "278682576"]; // @EnterQuotes, @Inspire_Us, @wordstionary, @mindsconsole1, @GreatestQuotes, @MotivatedLiving, @HealingMB, @911well, @fearlessmotivat, @iamfearlesssoul, @thesecret
-keywords = ['happy', 'happiness', 'motivation', 'mind', 'love', 'life', 'focus', 'start', 'understand', 'simpl', 'advice', 'thinking', 'mindfulness', 'kindness', 'success', 'patience', 'enthusiasm', 'dream', 'plan', 'doing', 'right', 'true'];
+keywords = ['happy', 'happiness', 'motivation', 'mind', 'love', 'life', 'focus', 'start', 'understand', 'simpl', 'advice', 'thinking', 'mindfulness', 'kindness', 'success', 'patience', 'enthusiasm', 'dream', 'plan', 'doing', 'right', 'true', 'faith'];
 
 var statusStream = T.stream('statuses/filter', {
   follow: followList
@@ -273,7 +273,7 @@ favoriteStream.on('follow', function(tweet) {
 });
 
 
-var cronJobUnfollowing = cron.job("1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
+var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
 	setTimeout(function(){
 			console.log("Started unfollowing cron job");
 			T.get('account/verify_credentials', 
