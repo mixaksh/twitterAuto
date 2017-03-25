@@ -444,7 +444,7 @@ function cleanFollowing(){
 }
 
 
-var cronJobFollowing = cron.job("*/2 * * *", function(){
+var cronJobFollowing = cron.job("0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * *", function(){
 	setTimeout(function(){
 		console.log("Started following cron job.");
 		T.get('account/verify_credentials', 
