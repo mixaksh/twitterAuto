@@ -229,7 +229,7 @@ favoriteStream.on('follow', function(tweet) {
   }
   else{
 	qWriteFollowed.push({id: tweet.target.id_str, screen_name: tweet.target.screen_name, date: new Date()});
-	
+	/*
 	T.get('statuses/user_timeline', {
 		screen_name: tweet.target.screen_name,
 		count: getRandomIntInclusive(1,3),
@@ -268,7 +268,7 @@ favoriteStream.on('follow', function(tweet) {
 			}
 		});
 		*/
-	});
+	}); */
   }
 });
 
