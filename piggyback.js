@@ -259,7 +259,7 @@ favoriteStream.on('follow', function(tweet) {
 			});
 		}
 	
-		/*
+		
 		T.post('statuses/retweet/:id', {
 			id: data[0].id_str
 		}, function(err){
@@ -267,7 +267,7 @@ favoriteStream.on('follow', function(tweet) {
 				console.log(err);
 			}
 		});
-		*/
+		
 	}); */
   }
 });
