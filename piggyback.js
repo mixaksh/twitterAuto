@@ -136,9 +136,13 @@ var qWriteUnfollowed = async.queue(function(task, callback){
 			} else {
 				unfollowed_list = JSON.parse(dataUJSON); //now it is an object
 				if (unfollowed_list.indexOf(task) === -1){
+					console.log("I am inside and writing to file");
 					unfollowed_list.push(task);
 					var json = JSON.stringify(unfollowed_list);
 					fs.writeFile('unfollowedUsers.json', json, 'utf8');
+				}
+				else{
+					console.log("I never reached inside writing unfollowed");
 				}
 		}});
 	}
