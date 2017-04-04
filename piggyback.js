@@ -291,7 +291,7 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 					var following_count = data.friends_count;
 					var unfollowingLimit = following_count - followers_count;
 					unfollowingLimit = Math.round(unfollowingLimit/12);
-					
+					console.log("Unfollowing limit is: "+unfollowingLimit);
 					if(unfollowingLimit > 0){
 						if (fs.existsSync('followedUsers.json')) {
 							fs.readFile('followedUsers.json', 'utf8', function readFileCallback(err, dataJSON){
@@ -469,7 +469,7 @@ var cronJobFollowing = cron.job("0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * *", func
 				}
 				
 				following_left = Math.round(following_left/12);
-				
+				console.log("Following limit is: "+following_left);
 				if(following_left > 0){
 					api_calls_left--;
 					
