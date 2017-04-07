@@ -408,39 +408,34 @@ function cleanFollowing(){
 				console.log(err);
 			} else {
 				newObj = JSON.parse(datadJSON);
-				if (fs.existsSync('followedUsers.json')) {
-					fs.readFile('followedUsers.json', 'utf8', function readFileCallback(err, dataJSON){
-						if (err){
-							console.log(err);
-						} else {
-							followedData = JSON.parse(dataJSON);
-							var noLenght = newObj.length;
-							for (var i=0; i<noLenght; i++){
-								dIndex = -1;
-								fdLength = followedData.records.length;
-								for (var j=0; j<fdLength; j++){
-									if(followedData.records[j].id == newObj[i].id){
-										dIndex = j;
-										break;
+				if (newObj.length > 0){
+					if (fs.existsSync('followedUsers.json')) {
+						fs.readFile('followedUsers.json', 'utf8', function readFileCallback(err, dataJSON){
+							if (err){
+								console.log(err);
+							} else {
+								followedData = JSON.parse(dataJSON);
+								var noLenght = newObj.length;
+								for (var i=0; i<noLenght; i++){
+									dIndex = -1;
+									fdLength = followedData.records.length;
+									for (var j=0; j<fdLength; j++){
+										if(followedData.records[j].id == newObj[i].id){
+											dIndex = j;
+											break;
+										}
+									}
+									if (dIndex > -1){
+										followedData.records.splice(dIndex,1);
 									}
 								}
-								if (dIndex > -1){
-									followedData.records.splice(dIndex,1);
+								else{
+									jsonObj = JSON.stringify(followedData); //convert it back to json
+									fs.writeFile('followedUsers.json', jsonObj, 'utf8'); // write it back
 								}
 							}
-							if(followedData.records.length === 0){
-								fs.unlinkSync('followedUsers.json');
-							}
-							else{
-								jsonObj = JSON.stringify(followedData); //convert it back to json
-								fs.writeFile('followedUsers.json', jsonObj, 'utf8'); // write it back
-							}
-							fs.unlinkSync('delFollowedUsers.json');
-						}
-					});
-				}
-				else{
-					fs.unlinkSync('delFollowedUsers.json');
+						});
+					}
 				}
 			}
 		});
