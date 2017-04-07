@@ -429,7 +429,7 @@ function cleanFollowing(){
 										followedData.records.splice(dIndex,1);
 									}
 								}
-								else{
+								if (followedData.records.length > 0){
 									jsonObj = JSON.stringify(followedData); //convert it back to json
 									fs.writeFile('followedUsers.json', jsonObj, 'utf8'); // write it back
 								}
