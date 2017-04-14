@@ -277,7 +277,7 @@ favoriteStream.on('follow', function(tweet) {
 });
 
 
-var cronJobUnfollowing = cron.job("0 35 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
+var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
 	setTimeout(function(){
 			console.log("Started unfollowing cron job");
 			T.get('account/verify_credentials', 
@@ -396,10 +396,12 @@ var cronJobUnfollowing = cron.job("0 35 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fu
 					console.log("Reached unfollowing limit");
 				}
 	}});
-	setTimeout(cleanFollowing, 2000);//15000);//60000*5);
-	},getRandomIntInclusive(1000,3000));//60000, 49000*60));	
+	setTimeout(cleanFollowing, 60000*15);
+	},getRandomIntInclusive(60000, 49000*60));	
 });
 cronJobUnfollowing.start();
+
+cleanFollowing();
 
 function cleanFollowing(){
 	console.log("Started cleaning cron job.");
@@ -407,6 +409,7 @@ function cleanFollowing(){
 		fs.readFile('delFollowedUsers.json', 'utf8', function readFileCallback(err, datadJSON){
 			if (err){
 				console.log(err);
+				console.log("Cannot read file delFollowedUsers.json.");
 			} else {
 				newObj = JSON.parse(datadJSON);
 				if (newObj.length > 0){
@@ -414,6 +417,7 @@ function cleanFollowing(){
 						fs.readFile('followedUsers.json', 'utf8', function readFileCallback(err, dataJSON){
 							if (err){
 								console.log(err);
+								console.log("Cannot read file followedUsers.json.");
 							} else {
 								followedData = JSON.parse(dataJSON);
 								var noLenght = newObj.length;
@@ -422,6 +426,7 @@ function cleanFollowing(){
 									fdLength = followedData.records.length;
 									for (var j=0; j<fdLength; j++){
 										if(followedData.records[j].id == newObj[i].id){
+											console.log("Got one!");
 											dIndex = j;
 											break;
 										}
@@ -434,12 +439,25 @@ function cleanFollowing(){
 									jsonObj = JSON.stringify(followedData); //convert it back to json
 									fs.writeFile('followedUsers.json', jsonObj, 'utf8'); // write it back
 								}
+								else{
+									console.log("Followed data empty!");
+								}
 							}
 						});
 					}
+					else{
+						console.log("File followedUsers.json does not exist.");
+					}
 				}
+				else{
+					console.log("NewObj length is 0.");
+				}
+				fs.writeFile('delFollowedUsers.json', "[]", 'utf8');
 			}
 		});
+	}
+	else{
+		console.log("File delFollowedUsers.json does not exist.");
 	}
 }
 
