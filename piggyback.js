@@ -277,7 +277,7 @@ favoriteStream.on('follow', function(tweet) {
 });
 
 
-var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
+var cronJobUnfollowing = cron.job("0 28 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
 	setTimeout(function(){
 			console.log("Started unfollowing cron job");
 			T.get('account/verify_credentials', 
@@ -297,6 +297,7 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 							fs.readFile('followedUsers.json', 'utf8', function readFileCallback(err, dataJSON){
 							if (err){
 								console.log(err);
+								console.log("Cannot read file followedUsers.json");
 							} else {
 								var all_user_ids = [];
 								var myCursor = -1;
@@ -308,6 +309,7 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 								}, function getFollowerIds(err, data, response){
 									if(err){
 										console.log(err);
+										console.log("Cannot get followersIds");
 									}
 									else{
 										all_user_ids.push.apply(all_user_ids, data.ids);
@@ -338,6 +340,7 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 													}, function destroyMore(err){
 														if(err){
 															console.log(err);
+															console.log("Cannot destroy friendship");
 														}
 														else{
 															unfollowed_count++;
@@ -393,8 +396,8 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 					console.log("Reached unfollowing limit");
 				}
 	}});
-	setTimeout(cleanFollowing, 15000);//60000*5);
-	},getRandomIntInclusive(60000, 49000*60));	
+	setTimeout(cleanFollowing, 2000);//15000);//60000*5);
+	},getRandomIntInclusive(1000,3000));//60000, 49000*60));	
 });
 cronJobUnfollowing.start();
 
