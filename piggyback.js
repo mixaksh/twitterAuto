@@ -401,7 +401,6 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 });
 cronJobUnfollowing.start();
 
-cleanFollowing();
 
 function cleanFollowing(){
 	console.log("Started cleaning cron job.");
@@ -426,7 +425,6 @@ function cleanFollowing(){
 									fdLength = followedData.records.length;
 									for (var j=0; j<fdLength; j++){
 										if(followedData.records[j].id == newObj[i].id){
-											console.log("Got one!");
 											dIndex = j;
 											break;
 										}
