@@ -368,17 +368,14 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 																	}
 																	else{
 																		console.log("No more people to unfollow.");
-																		setTimeout(cleanFollowing, 15000);//60000*5);
 																	}
 																}
 																else{
 																	console.log("No more people to unfollow.");
-																	setTimeout(cleanFollowing, 15000);//60000*5);
 																}
 															}
 															else{
 																console.log("Reached unfollowing limit.");
-																setTimeout(cleanFollowing, 15000);//60000*5);
 															}
 														}
 													});
@@ -396,6 +393,7 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 					console.log("Reached unfollowing limit");
 				}
 	}});
+	setTimeout(cleanFollowing, 15000);//60000*5);
 	},getRandomIntInclusive(60000, 49000*60));	
 });
 cronJobUnfollowing.start();
