@@ -277,7 +277,7 @@ favoriteStream.on('follow', function(tweet) {
 });
 
 
-var cronJobUnfollowing = cron.job("0 28 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
+var cronJobUnfollowing = cron.job("0 35 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
 	setTimeout(function(){
 			console.log("Started unfollowing cron job");
 			T.get('account/verify_credentials', 
@@ -348,7 +348,7 @@ var cronJobUnfollowing = cron.job("0 28 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fu
 															
 															qWriteUnfollowed.push(obj.records[unfollowIndex].id);
 															qDelUnfollowed.push(obj.records[unfollowIndex]);
-															
+														}
 															startIndex = unfollowIndex+1;
 															unfollowIndex = -1;
 															if (unfollowingLimit > 0){
@@ -380,7 +380,7 @@ var cronJobUnfollowing = cron.job("0 28 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fu
 															else{
 																console.log("Reached unfollowing limit.");
 															}
-														}
+														
 													});
 												}
 												else{
