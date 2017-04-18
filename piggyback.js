@@ -277,7 +277,7 @@ favoriteStream.on('follow', function(tweet) {
 });
 
 
-var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",function(){
+var cronJobUnfollowing = cron.job("0 0 1,7,17 * * *",function(){
 	setTimeout(function(){
 			console.log("Started unfollowing cron job");
 			T.get('account/verify_credentials', 
@@ -397,7 +397,7 @@ var cronJobUnfollowing = cron.job("0 0 1,3,5,7,9,11,13,15,17,19,21,23 * * *",fun
 				}
 	}});
 	setTimeout(cleanFollowing, 60000*15);
-	},getRandomIntInclusive(60000, 49000*60));	
+	},getRandomIntInclusive(60000, 49000*60*4));	
 });
 cronJobUnfollowing.start();
 
@@ -460,7 +460,7 @@ function cleanFollowing(){
 }
 
 
-var cronJobFollowing = cron.job("0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * *", function(){
+var cronJobFollowing = cron.job("0 0 0,4,8,12,16,20 * * *", function(){
 	setTimeout(function(){
 		console.log("Started following cron job.");
 		T.get('account/verify_credentials', 
