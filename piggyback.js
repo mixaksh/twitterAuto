@@ -291,7 +291,7 @@ var cronJobUnfollowing = cron.job("0 0 1,7,17 * * *",function(){
 					var following_count = data.friends_count;
 					var unfollowingLimit = following_count - followers_count;
 					unfollowingLimit = Math.round(unfollowingLimit/12);
-					unfollowingLimit = 50;
+					unfollowingLimit = 100;
 					console.log("Unfollowing limit is: "+unfollowingLimit);
 					if(unfollowingLimit > 0){
 						if (fs.existsSync('followedUsers.json')) {
