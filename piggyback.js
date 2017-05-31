@@ -493,7 +493,7 @@ var cronJobFollowing = cron.job("0 0 0,4,8,12,16,20 * * *", function(){
 						cursorPos = -1;
 					}
 					T.get('followers/list', {
-						screen_name: 'JohnMcGrathMB',
+						screen_name: 'iownjd',
 						count: 200,
 						cursor: cursorPos
 					}, function getFollowersList(err, dataList, response){
